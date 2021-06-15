@@ -8,8 +8,7 @@
             [clojure.string :as string]
             [clojure.data.csv :as csv]
             [frak :as f])
-  (:import (clojure.lang MultiFn)
-           (java.text SimpleDateFormat)
+  (:import (java.text SimpleDateFormat)
            (java.util Date)
            (java.util.regex Pattern)))
 
@@ -105,7 +104,7 @@
 ;; TODO: update all usages of this function (preiously variable)
 (defn keyword-groups [namespace]
   (let [vars (vars-in-ns namespace)
-        compiler-specials (keys (. clojure.lang.Compiler specials))
+        compiler-specials (set (keys (. clojure.lang.Compiler specials)))
         exceptions   '#{throw try catch finally}
         repeat       '#{doseq dotimes while loop loop* recur}
         conditionals '#{case case*
@@ -113,7 +112,7 @@
                         if if* if-let if-not if-some
                         when when-first when-let when-not when-some}
         define (set (filter define?
-                            (set/union (map :name vars)
+                            (set/union (set (map :name vars))
                                        compiler-specials)))
         macros    (filter-vars :macro vars)
         functions (filter-vars function? vars)
