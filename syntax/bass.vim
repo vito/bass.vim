@@ -21,20 +21,19 @@ if has("folding") && exists("g:bass_fold") && g:bass_fold > 0
 	setlocal foldmethod=syntax
 endif
 
-" -*- KEYWORDS -*-
-" TODO: generate
+" NB: generated via 'go run ./gen' and copy-pasted
 let s:bass_syntax_keywords = {
-    \   'bassBoolean': ["false","true"]
-    \ , 'bassCond': ["case","cond","cond","cond->","cond->>","condp","if-let","if-not","if-some","when","when-first","when-let","when-not","when-some"]
-    \ , 'bassConstant': ["nil"]
-    \ , 'bassDefine': ["definline","definterface","defmacro","defmethod","defmulti","defn","defn-","defonce","defprotocol","defrecord","defstruct","deftype"]
-    \ , 'bassException': ["catch","finally","throw","try"]
-    \ , 'bassFunc': ["*","*'","+","+'","-","-'","->ArrayChunk","->Eduction","->Vec","->VecNode","->VecSeq","-cache-protocol-fn","-reset-methods","/","<","<=","=","==",">",">=","PrintWriter-on","StackTraceElement->vec","Throwable->map","accessor","aclone","add-classpath","add-tap","add-watch","agent","agent-error","agent-errors","aget","alength","alias","all-ns","alter","alter-meta!","alter-var-root","ancestors","any?","apply","array-map","aset","aset-boolean","aset-byte","aset-char","aset-double","aset-float","aset-int","aset-long","aset-short","assoc","assoc!","assoc-in","associative?","atom","await","await-for","await1","bases","bean","bigdec","bigint","biginteger","bit-and","bit-and-not","bit-clear","bit-flip","bit-not","bit-or","bit-set","bit-shift-left","bit-shift-right","bit-test","bit-xor","boolean","boolean-array","boolean?","booleans","bound-fn*","bound?","bounded-count","butlast","byte","byte-array","bytes","bytes?","case-fallthrough-err-impl","cast","cat","char","char-array","char?","chars","chunk","chunk-append","chunk-buffer","chunk-cons","chunk-first","chunk-next","chunk-rest","chunked-seq?","class","class?","clear-agent-errors","coll?","commute","comp","comparator","compare","compare-and-set!","compile","complement","completing","concat","conj","conj!","cons","constantly","construct-proxy","contains?","count","counted?","create-ns","create-struct","cycle","dec","dec'","decimal?","dedupe","delay?","deliver","denominator","deref","derive","descendants","destructure","disj","disj!","dissoc","dissoc!","distinct","distinct?","doall","dorun","double","double-array","double?","doubles","drop","drop-last","drop-while","eduction","empty","empty?","ensure","ensure-reduced","enumeration-seq","error-handler","error-mode","eval","even?","every-pred","every?","ex-cause","ex-data","ex-info","ex-message","extend","extenders","extends?","false?","ffirst","file-seq","filter","filterv","find","find-keyword","find-ns","find-protocol-impl","find-protocol-method","find-var","first","flatten","float","float-array","float?","floats","flush","fn?","fnext","fnil","force","format","frequencies","future-call","future-cancel","future-cancelled?","future-done?","future?","gensym","get","get-in","get-method","get-proxy-class","get-thread-bindings","get-validator","group-by","halt-when","hash","hash-combine","hash-map","hash-ordered-coll","hash-set","hash-unordered-coll","ident?","identical?","identity","ifn?","in-ns","inc","inc'","indexed?","init-proxy","inst-ms","inst-ms*","inst?","instance?","int","int-array","int?","integer?","interleave","intern","interpose","into","into-array","ints","isa?","iterate","iterator-seq","juxt","keep","keep-indexed","key","keys","keyword","keyword?","last","line-seq","list","list*","list?","load","load-file","load-reader","load-string","loaded-libs","long","long-array","longs","macroexpand","macroexpand-1","make-array","make-hierarchy","map","map-entry?","map-indexed","map?","mapcat","mapv","max","max-key","memoize","merge","merge-with","meta","method-sig","methods","min","min-key","mix-collection-hash","mod","munge","name","namespace","namespace-munge","nat-int?","neg-int?","neg?","newline","next","nfirst","nil?","nnext","not","not-any?","not-empty","not-every?","not=","ns-aliases","ns-imports","ns-interns","ns-map","ns-name","ns-publics","ns-refers","ns-resolve","ns-unalias","ns-unmap","nth","nthnext","nthrest","num","number?","numerator","object-array","odd?","parents","partial","partition","partition-all","partition-by","pcalls","peek","persistent!","pmap","pop","pop!","pop-thread-bindings","pos-int?","pos?","pr","pr-str","prefer-method","prefers","print","print-ctor","print-dup","print-method","print-simple","print-str","printf","println","println-str","prn","prn-str","promise","proxy-call-with-super","proxy-mappings","proxy-name","push-thread-bindings","qualified-ident?","qualified-keyword?","qualified-symbol?","quot","rand","rand-int","rand-nth","random-sample","range","ratio?","rational?","rationalize","re-find","re-groups","re-matcher","re-matches","re-pattern","re-seq","read","read+string","read-line","read-string","reader-conditional","reader-conditional?","realized?","record?","reduce","reduce-kv","reduced","reduced?","reductions","ref","ref-history-count","ref-max-history","ref-min-history","ref-set","refer","release-pending-sends","rem","remove","remove-all-methods","remove-method","remove-ns","remove-tap","remove-watch","repeat","repeatedly","replace","replicate","require","requiring-resolve","reset!","reset-meta!","reset-vals!","resolve","rest","restart-agent","resultset-seq","reverse","reversible?","rseq","rsubseq","run!","satisfies?","second","select-keys","send","send-off","send-via","seq","seq?","seqable?","seque","sequence","sequential?","set","set-agent-send-executor!","set-agent-send-off-executor!","set-error-handler!","set-error-mode!","set-validator!","set?","short","short-array","shorts","shuffle","shutdown-agents","simple-ident?","simple-keyword?","simple-symbol?","slurp","some","some-fn","some?","sort","sort-by","sorted-map","sorted-map-by","sorted-set","sorted-set-by","sorted?","special-symbol?","spit","split-at","split-with","str","string?","struct","struct-map","subs","subseq","subvec","supers","swap!","swap-vals!","symbol","symbol?","tagged-literal","tagged-literal?","take","take-last","take-nth","take-while","tap>","test","the-ns","thread-bound?","to-array","to-array-2d","trampoline","transduce","transient","tree-seq","true?","type","unchecked-add","unchecked-add-int","unchecked-byte","unchecked-char","unchecked-dec","unchecked-dec-int","unchecked-divide-int","unchecked-double","unchecked-float","unchecked-inc","unchecked-inc-int","unchecked-int","unchecked-long","unchecked-multiply","unchecked-multiply-int","unchecked-negate","unchecked-negate-int","unchecked-remainder-int","unchecked-short","unchecked-subtract","unchecked-subtract-int","underive","unreduced","unsigned-bit-shift-right","update","update-in","update-proxy","uri?","use","uuid?","val","vals","var-get","var-set","var?","vary-meta","vec","vector","vector-of","vector?","volatile!","volatile?","vreset!","with-bindings*","with-meta","with-redefs-fn","xml-seq","zero?","zipmap"]
-    \ , 'bassMacro': ["->","->>","..","amap","and","areduce","as->","assert","binding","bound-fn","comment","declare","delay","dosync","doto","extend-protocol","extend-type","for","future","gen-class","gen-interface","import","io!","lazy-cat","lazy-seq","letfn","locking","memfn","ns","or","proxy","proxy-super","pvalues","reify","some->","some->>","sync","time","vswap!","with-bindings","with-in-str","with-loading-context","with-local-vars","with-open","with-out-str","with-precision","with-redefs"]
-    \ , 'bassRepeat': ["doseq","dotimes","while"]
-    \ , 'bassSpecial': [".","def","do","fn","if","let","loop","monitor-enter","monitor-exit","new","quote","recur","set!","var"]
-    \ , 'bassVariable': ["*1","*2","*3","*agent*","*allow-unresolved-vars*","*assert*","*bass-version*","*command-line-args*","*compile-files*","*compile-path*","*compiler-options*","*data-readers*","*default-data-reader-fn*","*e","*err*","*file*","*flush-on-newline*","*fn-loader*","*in*","*math-context*","*ns*","*out*","*print-dup*","*print-length*","*print-level*","*print-meta*","*print-namespace-maps*","*print-readably*","*read-eval*","*reader-resolver*","*source-path*","*suppress-read*","*unchecked-math*","*use-context-classloader*","*verbose-defrecords*","*warn-on-reflection*","EMPTY-NODE","Inst","char-escape-string","char-name-string","default-data-readers","primitives-classnames","unquote","unquote-splicing"]
-    \ }
+			\   'bassCond': ["case","cond"]
+			\ , 'bassRepeat': ["each"]
+			\ , 'bassConst': ["null","_"]
+			\ , 'bassFn': ["symbol?","sink?","pair?","errorf","reduce-kv","with-insecure","=","subpath","second","map","boolean?","source?","next","run","cons","string->symbol","string->fs-path","list?","path?","log","filter","dump","assoc","foldl","with-mounts","with-env-var","scope?","applicative?","min","with-entrypoint","now","*","length","insecure!","in-image","substring","first","not","null?","in-dir","string?","-","list","id","with-args","number?","+","scope->list","str","append","ignore?","emit","third","apply","arg?","response-from","make-scope","bind","map-pairs","with-mount","last",">","foldr","unwrap","rest","arg","on-platform","error","symbol->string","operative?","string->run-path","stream","path","conj","with-stdin","with-meta","<=","string->dir","wrap","load","combiner?","logf","eval",">=","max","list*","<","merge","list->scope","empty?","with-env"]
+			\ , 'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
+			\ , 'bassBool': ["true","false"]
+			\ , 'bassDef': ["defn","def","defop"]
+			\ , 'bassOp': ["$","->","or","provide","fn","import","get-current-scope","op","quote","let","and"]
+			\ , 'bassSpecial': ["commentary","if","def","doc","time","do","comment"]
+			\ }
+
 
 function! s:syntax_keyword(dict)
 	for key in keys(a:dict)
@@ -44,7 +43,7 @@ endfunction
 
 if exists('b:bass_syntax_without_core_keywords') && b:bass_syntax_without_core_keywords
 	" Only match language specials and primitives
-	for s:key in ['bassBoolean', 'bassConstant', 'bassException', 'bassSpecial']
+	for s:key in ['bassBool', 'bassConst', 'bassSpecial']
 		execute 'syntax keyword' s:key join(s:bass_syntax_keywords[s:key], ' ')
 	endfor
 else
@@ -96,8 +95,7 @@ syntax match bassComment "#!.*$"
 syntax match bassComment ","
 
 " -*- TOP CLUSTER -*-
-" TODO: generate
-syntax cluster bassTop contains=@Spell,bassBoolean,bassCharacter,bassComment,bassCond,bassConstant,bassDefine,bassDeref,bassDispatch,bassError,bassException,bassFunc,bassKeyword,bassMacro,bassMap,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVariable,bassVector
+syntax cluster bassTop contains=@Spell,bassBool,bassCharacter,bassComment,bassCond,bassConst,bassDef,bassDeref,bassDispatch,bassError,bassFn,bassKeyword,bassOp,bassMap,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVar,bassVector
 
 syntax region bassSexp   matchgroup=bassParen start="("  end=")" contains=@bassTop fold
 syntax region bassVector matchgroup=bassParen start="\[" end="]" contains=@bassTop fold
@@ -108,8 +106,8 @@ syntax match bassError "]\|}\|)"
 
 syntax sync fromstart
 
-highlight default link bassConstant                  Constant
-highlight default link bassBoolean                   Boolean
+highlight default link bassConst                     Constant
+highlight default link bassBool                      Boolean
 highlight default link bassCharacter                 Character
 highlight default link bassKeyword                   Keyword
 highlight default link bassNumber                    Number
@@ -117,12 +115,11 @@ highlight default link bassString                    String
 highlight default link bassStringDelimiter           String
 highlight default link bassStringEscape              Character
 
-highlight default link bassVariable                  Identifier
+highlight default link bassVar                       Identifier
 highlight default link bassCond                      Conditional
-highlight default link bassDefine                    Define
-highlight default link bassException                 Exception
-highlight default link bassFunc                      Function
-highlight default link bassMacro                     Macro
+highlight default link bassDef                       Define
+highlight default link bassFn                        Function
+highlight default link bassOp                        Macro
 highlight default link bassRepeat                    Repeat
 
 highlight default link bassSpecial                   Special
