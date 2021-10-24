@@ -31,9 +31,9 @@ setlocal formatoptions-=t
 setlocal comments=n:;
 setlocal commentstring=;\ %s
 
-" Specially indented symbols from clojure.core and clojure.test.
+" Specially indented symbols from Bass stdlib
 "
-" Clojure symbols are indented in the defn style when they:
+" Bass forms are indented in the defn style when they:
 "
 "   * Define vars and anonymous functions
 "   * Create new lexical scopes or scopes with altered environments
@@ -44,19 +44,9 @@ setlocal commentstring=;\ %s
 " specially and hence are not indented specially.
 "
 " -*- LISPWORDS -*-
-" Generated from https://github.com/clojure-vim/clojure.vim/blob/%%RELEASE_TAG%%/clj/src/vim_clojure_static/generate.clj
-setlocal lispwords=as->,binding,bound-fn,case,catch,cond->,cond->>,condp,def,definline,definterface,defmacro,defmethod,defmulti,defn,defn-,defonce,defprotocol,defrecord,defstruct,deftest,deftest-,deftype,doseq,dotimes,doto,extend,extend-protocol,extend-type,fn,for,if,if-let,if-not,if-some,let,letfn,locking,loop,ns,proxy,reify,set-test,testing,when,when-first,when-let,when-not,when-some,while,with-bindings,with-in-str,with-local-vars,with-open,with-precision,with-redefs,with-redefs-fn,with-test
-
-" Provide insert mode completions for special forms and clojure.core. As
-" 'omnifunc' is set by popular Clojure REPL client plugins, we also set
-" 'completefunc' so that the user has some form of completion available when
-" 'omnifunc' is set and no REPL connection exists.
-for s:setting in ['omnifunc', 'completefunc']
-	if exists('&' . s:setting) && empty(eval('&' . s:setting))
-		execute 'setlocal ' . s:setting . '=clojurecomplete#Complete'
-		let b:undo_ftplugin .= ' | setlocal ' . s:setting . '<'
-	endif
-endfor
+"
+" TODO: generate based on comments annotated on definitions in stdlib
+setlocal lispwords=def,op,defop,defn,defcmd,provide
 
 " Skip brackets in ignored syntax regions when using the % command
 if exists('loaded_matchit')
@@ -67,9 +57,7 @@ endif
 
 " Filter files in the browse dialog
 if (has("gui_win32") || has("gui_gtk")) && !exists("b:browsefilter")
-	let b:browsefilter = "Clojure Source Files (*.clj)\t*.clj\n" .
-	                   \ "ClojureScript Source Files (*.cljs)\t*.cljs\n" .
-	                   \ "Java Source Files (*.java)\t*.java\n" .
+	let b:browsefilter = "Bass Source Files (*.bass)\t*.bass\n" .
 	                   \ "All Files (*.*)\t*.*\n"
 	let b:undo_ftplugin .= ' | unlet! b:browsefilter'
 endif
