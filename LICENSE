@@ -1,14 +1,5 @@
 Bass.vim is forked from Clojure.vim and retains the same Vim License, with
-additional copyright for changes to the fork:
-
-        Copyright © 2021, Alex Suraci <suraci.alex@gmail.com>
-
-The original license text follows, the only change being that files have been
-renamed from clojure.vim to bass.vim.
-
-------------------------------------------------------------------------------
-
-Clojure.vim is licenced under the same terms as Vim using the Vim Licence.
+additional copyright for changes to the fork.
 
     syntax/bass.vim:
 
@@ -21,8 +12,9 @@ Clojure.vim is licenced under the same terms as Vim using the Vim Licence.
 
         Copyright © 2008–2012, Meikel Brandmeyer <mb@kotka.de>
 
-    Modified and relicensed under the Vim License for distribution with Vim:
+    Modified and relicensed under the Vim License:
 
+        Copyright © 2021, Alex Suraci <suraci.alex@gmail.com>
         Copyright © 2020–2021, The clojure-vim contributors
         Copyright © 2013–2018, Sung Pae <self@sungpae.com>
 

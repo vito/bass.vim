@@ -1,31 +1,31 @@
-*clojure.txt*	Clojure runtime files
+*bass.txt*	Bass runtime files
 
-INTRODUCTION						*clojure-introduction*
+INTRODUCTION						*bass-introduction*
 
-Clojure runtime files for Vim.
+Bass runtime files for Vim.
 
 
-CLOJURE					*ft-clojure-indent* *clojure-indent*
+BASS					*ft-bass-indent* *bass-indent*
 
-Clojure indentation differs somewhat from traditional Lisps, due in part to
-the use of square and curly brackets, and otherwise by community convention.
-These conventions are not universally followed, so the Clojure indent script
-offers a few configuration options.
+Bass indentation differs somewhat from traditional Lisps, due in part to the
+use of square and curly brackets, and otherwise by community convention. These
+conventions are not universally followed, so the Bass indent script offers a
+few configuration options.
 
 (If the current Vim does not include |searchpairpos()|, the indent script falls
 back to normal 'lisp' indenting, and the following options are ignored.)
 
 
-							*g:clojure_maxlines*
+							*g:bass_maxlines*
 
 Sets maximum scan distance of `searchpairpos()`.  Larger values trade
 performance for correctness when dealing with very long forms.  A value of
 0 will scan without limits.  The default is 300.
 
 
-						*g:clojure_fuzzy_indent*
-					*g:clojure_fuzzy_indent_patterns*
-					*g:clojure_fuzzy_indent_blacklist*
+						*g:bass_fuzzy_indent*
+					*g:bass_fuzzy_indent_patterns*
+					*g:bass_fuzzy_indent_blacklist*
 
 The 'lispwords' option is a list of comma-separated words that mark special
 forms whose subforms should be indented with two spaces.
@@ -42,39 +42,39 @@ If you would like to specify 'lispwords' with a |pattern| instead, you can use
 the fuzzy indent feature:
 >
 	" Default
-	let g:clojure_fuzzy_indent = 1
-	let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
-	let g:clojure_fuzzy_indent_blacklist =
+	let g:bass_fuzzy_indent = 1
+	let g:bass_fuzzy_indent_patterns = ['^with', '^def', '^let']
+	let g:bass_fuzzy_indent_blacklist =
 		\ ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 <
-|g:clojure_fuzzy_indent_patterns| and |g:clojure_fuzzy_indent_blacklist| are
-lists of patterns that will be matched against the unqualified symbol at the
-head of a list.  This means that a pattern like `"^foo"` will match all these
+|g:bass_fuzzy_indent_patterns| and |g:bass_fuzzy_indent_blacklist| are lists
+of patterns that will be matched against the unqualified symbol at the head of
+a list.  This means that a pattern like `"^foo"` will match all these
 candidates: `foobar`, `my.ns/foobar`, and `#'foobar`.
 
 Each candidate word is tested for special treatment in this order:
 
 	1. Return true if word is literally in 'lispwords'
 	2. Return false if word matches a pattern in
-	   |g:clojure_fuzzy_indent_blacklist|
+	   |g:bass_fuzzy_indent_blacklist|
 	3. Return true if word matches a pattern in
-	   |g:clojure_fuzzy_indent_patterns|
+	   |g:bass_fuzzy_indent_patterns|
 	4. Return false and indent normally otherwise
 
 
-					*g:clojure_special_indent_words*
+					*g:bass_special_indent_words*
 
-Some forms in Clojure are indented such that every subform is indented by only
+Some forms in Bass are indented such that every subform is indented by only
 two spaces, regardless of 'lispwords'.  If you have a custom construct that
 should be indented in this idiosyncratic fashion, you can add your symbols to
 the default list below.
 >
 	" Default
-	let g:clojure_special_indent_words =
+	let g:bass_special_indent_words =
 	   \ 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
 <
 
-					*g:clojure_align_multiline_strings*
+					*g:bass_align_multiline_strings*
 
 Align subsequent lines in multi-line strings to the column after the opening
 quote, instead of the same column.
@@ -94,7 +94,7 @@ For example:
 	   nisi ut aliquip ex ea commodo consequat.")
 <
 
-						*g:clojure_align_subforms*
+						*g:bass_align_subforms*
 
 By default, parenthesized compound forms that look like function calls and
 whose head subform is on its own line have subsequent subforms indented by
@@ -106,61 +106,62 @@ two spaces relative to the opening paren:
 <
 Setting this option to `1` changes this behaviour so that all subforms are
 aligned to the same column, emulating the default behaviour of
-clojure-mode.el:
+bass-mode.el:
 >
 	(foo
 	 bar
 	 baz)
 <
 
-CLOJURE							*ft-clojure-syntax*
+BASS							*ft-bass-syntax*
 
-Syntax highlighting of public vars in "clojure.core" is provided by default,
+Syntax highlighting of bindings from the Bass stdlib is provided by default,
 but additional symbols can be highlighted by adding them to the
-*g:clojure_syntax_keywords* variable.  The value should be a |Dictionary| of
+`g:bass_syntax_keywords` variable. The value should be a |Dictionary| of
 syntax group names, each containing a |List| of identifiers.
 >
-	let g:clojure_syntax_keywords = {
-	    \   'clojureMacro': ["defproject", "defcustom"],
-	    \   'clojureFunc': ["string/join", "string/replace"]
+	let g:bass_syntax_keywords = {
+	    \   'bassMacro': ["defproject", "defcustom"],
+	    \   'bassFunc': ["string/join", "string/replace"]
 	    \ }
 <
-Refer to the Clojure syntax script for valid syntax group names.
+Refer to the Bass syntax script for valid syntax group names.
 
-There is also *b:clojure_syntax_keywords* which is a buffer-local variant of
-this variable intended for use by plugin authors to highlight symbols
-dynamically.
+There is also *b:bass_syntax_keywords* which is a buffer-local variant of this
+variable intended for use by plugin authors to highlight symbols dynamically.
 
-By setting the *b:clojure_syntax_without_core_keywords* variable, vars from
-"clojure.core" will not be highlighted by default.  This is useful for
-namespaces that have set `(:refer-clojure :only [])`
+By setting the *b:bass_syntax_without_core_keywords* variable, vars from Bass
+stdlib will not be highlighted by default.
 
-Setting *g:clojure_fold* to `1` will enable the folding of Clojure code.  Any
-list, vector or map that extends over more than one line can be folded using
-the standard Vim |fold-commands|.
+Setting *g:bass_fold* to `1` will enable the folding of Bass code.  Any list,
+vector or map that extends over more than one line can be folded using the
+standard Vim |fold-commands|.
 
 
-ABOUT							*clojure-about*
+ABOUT							*bass-about*
 
 This document and associated runtime files are maintained at:
-https://github.com/clojure-vim/clojure.vim
+
+	https://github.com/vito/bass.vim
 
 Distributed under the Vim license. See |license|.
 
-syntax/clojure.vim
+syntax/bass.vim:
 
-	Copyright 2007-2008 (c) Toralf Wittner <toralf.wittner@gmail.com>
-	Copyright 2008-2012 (c) Meikel Brandmeyer <mb@kotka.de>
+        Copyright © 2008–2012, Meikel Brandmeyer <mb@kotka.de>
+        Copyright © 2007–2008, Toralf Wittner <toralf.wittner@gmail.com>
 
-ftdetect/clojure.vim,
-ftplugin/clojure.vim,
-indent/clojure.vim
+ftdetect/bass.vim,
+ftplugin/bass.vim,
+indent/bass.vim:
 
-	Copyright 2008-2012 (c) Meikel Brandmeyer <mb@kotka.de>
+        Copyright © 2008–2012, Meikel Brandmeyer <mb@kotka.de>
 
-Modified and relicensed under the Vim License for distribution with Vim:
+Modified and relicensed under the Vim License:
 
-	Copyright 2013-2014 (c) Sung Pae <self@sungpae.com>
+        Copyright © 2021, Alex Suraci <suraci.alex@gmail.com>
+        Copyright © 2020–2021, The clojure-vim contributors
+        Copyright © 2013–2018, Sung Pae <self@sungpae.com>
 
 Last Change: %%RELEASE_DATE%%
 
