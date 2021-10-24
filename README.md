@@ -1,34 +1,29 @@
-# Clojure.vim
+> **work in progress** - expect broken promises until this notice is removed!
 
-[Clojure][] syntax highlighting for Vim and Neovim, including:
+# Bass.vim
 
-- [Augmentable](#syntax-options) syntax highlighting.
-- [Configurable](#indent-options) indentation.
-- Basic insert-mode completion of special forms and public vars in
-  `clojure.core`.  (Invoke with `<C-x><C-o>` or `<C-x><C-u>`.)
+[Bass][] syntax highlighting for Vim and Neovim.
+
+Provides syntax highlighting and LSP configuration (assuming you have
+`bass-lsp` installed).
 
 
 ## Installation
 
-These files are included in both Vim and Neovim.  However if you would like the
-latest changes just install this repository like any other plugin.
-
-Make sure that the following options are set in your vimrc so that all features
-are enabled:
-
 ```vim
-syntax on
-filetype plugin indent on
+Plug 'vito/bass.vim'
 ```
 
+Adjust for whatever flavor of package manager you use - there's not a lot to
+set up.
 
 ## Configuration
 
 ### Folding
 
-Setting `g:clojure_fold` to `1` will enable the folding of Clojure code.  Any
-list, vector or map that extends over more than one line can be folded using
-the standard Vim fold commands.
+Setting `g:bass_fold` to `1` will enable the folding of Bass code.  Any list,
+vector or map that extends over more than one line can be folded using the
+standard Vim fold commands.
 
 (Note that this option will not work with scripts that redefine the bracket
 regions, such as rainbow parenphesis plugins.)
@@ -36,47 +31,47 @@ regions, such as rainbow parenphesis plugins.)
 
 ### Syntax options
 
-Syntax highlighting of public vars in `clojure.core` is provided by default,
+Syntax highlighting of bindings from the Bass stdlib is provided by default,
 but additional symbols can be highlighted by adding them to the
-`g:clojure_syntax_keywords` variable.
+`g:bass_syntax_keywords` variable.
 
 ```vim
-let g:clojure_syntax_keywords = {
-    \   'clojureMacro': ["defproject", "defcustom"],
-    \   'clojureFunc': ["string/join", "string/replace"]
+let g:bass_syntax_keywords = {
+    \   'bassOp': ["defn", "defop"],
+    \   'bassFn': ["length", "map"]
     \ }
 ```
 
-(See `s:clojure_syntax_keywords` in the [syntax script](syntax/clojure.vim) for
+(See `s:bass_syntax_keywords` in the [syntax script](syntax/bass.vim) for
 a complete example.)
 
-There is also a buffer-local variant of this variable (`b:clojure_syntax_keywords`)
+There is also a buffer-local variant of this variable (`b:bass_syntax_keywords`)
 that is intended for use by plugin authors to highlight symbols dynamically.
 
-By setting `b:clojure_syntax_without_core_keywords`, vars from `clojure.core`
+By setting `b:bass_syntax_without_core_keywords`, vars from `bass.core`
 will not be highlighted by default.  This is useful for namespaces that have
-set `(:refer-clojure :only [])`.
+set `(:refer-bass :only [])`.
 
 
 ### Indent options
 
-Clojure indentation differs somewhat from traditional Lisps, due in part to
-the use of square and curly brackets, and otherwise by community convention.
-These conventions are not universally followed, so the Clojure indent script
-offers a few configuration options.
+Bass indentation differs somewhat from traditional Lisps, due in part to the
+use of square and curly brackets, and otherwise by community convention. These
+conventions are not universally followed, so the Bass indent script offers a
+few configuration options.
 
 (If the current Vim does not include `searchpairpos()`, the indent script falls
 back to normal `'lisp'` indenting, and the following options are ignored.)
 
 
-#### `g:clojure_maxlines`
+#### `g:bass_maxlines`
 
 Sets maximum scan distance of `searchpairpos()`.  Larger values trade
 performance for correctness when dealing with very long forms.  A value of
 0 will scan without limits.  The default is 300.
 
 
-#### `g:clojure_fuzzy_indent`, `g:clojure_fuzzy_indent_patterns`, `g:clojure_fuzzy_indent_blacklist`
+#### `g:bass_fuzzy_indent`, `g:bass_fuzzy_indent_patterns`, `g:bass_fuzzy_indent_blacklist`
 
 The `'lispwords'` option is a list of comma-separated words that mark special
 forms whose subforms should be indented with two spaces.
@@ -96,12 +91,12 @@ the fuzzy indent feature:
 
 ```vim
 " Default
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
-let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+let g:bass_fuzzy_indent = 1
+let g:bass_fuzzy_indent_patterns = ['^with', '^def', '^let']
+let g:bass_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 ```
 
-`g:clojure_fuzzy_indent_patterns` and `g:clojure_fuzzy_indent_blacklist` are
+`g:bass_fuzzy_indent_patterns` and `g:bass_fuzzy_indent_blacklist` are
 lists of patterns that will be matched against the unqualified symbol at the
 head of a list.  This means that a pattern like `"^foo"` will match all these
 candidates: `foobar`, `my.ns/foobar`, and `#'foobar`.
@@ -109,25 +104,25 @@ candidates: `foobar`, `my.ns/foobar`, and `#'foobar`.
 Each candidate word is tested for special treatment in this order:
 
 1. Return true if word is literally in `'lispwords'`
-2. Return false if word matches a pattern in `g:clojure_fuzzy_indent_blacklist`
-3. Return true if word matches a pattern in `g:clojure_fuzzy_indent_patterns`
+2. Return false if word matches a pattern in `g:bass_fuzzy_indent_blacklist`
+3. Return true if word matches a pattern in `g:bass_fuzzy_indent_patterns`
 4. Return false and indent normally otherwise
 
 
-#### `g:clojure_special_indent_words`
+#### `g:bass_special_indent_words`
 
-Some forms in Clojure are indented such that every subform is indented by only
-two spaces, regardless of `'lispwords'`.  If you have a custom construct that
+Some forms in Bass are indented such that every subform is indented by only two
+spaces, regardless of `'lispwords'`.  If you have a custom construct that
 should be indented in this idiosyncratic fashion, you can add your symbols to
 the default list below.
 
 ```vim
 " Default
-let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
+let g:bass_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
 ```
 
 
-#### `g:clojure_align_multiline_strings`
+#### `g:bass_align_multiline_strings`
 
 Align subsequent lines in multi-line strings to the column after the opening
 quote, instead of the same column.
@@ -149,7 +144,7 @@ For example:
 ```
 
 
-#### `g:clojure_align_subforms`
+#### `g:bass_align_subforms`
 
 By default, parenthesized compound forms that look like function calls and
 whose head subform is on its own line have subsequent subforms indented by
@@ -174,41 +169,36 @@ aligned to the same column, emulating the default behaviour of
 
 ## Contribute
 
-Pull requests are welcome!  Make sure to read the
-[`CONTRIBUTING.md`](CONTRIBUTING.md) for useful information.
+Pull requests are welcome! A healthy `CONTRIBUTING.md` file will be written
+once I figure out how to contribute to this myself. Until then, wing it and
+open issues if you have any questions. Thanks!
 
 
 ## Acknowledgements
 
-[Clojure.vim][] is a continuation of [vim-clojure-static][].
-_Vim-clojure-static_ was created by [Sung Pae](https://github.com/guns).  The
-original copies of the packaged runtime files came from
-[Meikel Brandmeyer](http://kotka.de/)'s [VimClojure][] project with permission.
-
-Thanks to [Tim Pope](https://github.com/tpope/) for advice in
-[#vim](https://www.vi-improved.org/).
+Bass.vim stands on the shoulders of [Clojure.vim][] which has its own history
+and acknowledgements.
 
 
 ## License
 
-Clojure.vim is licensed under the [Vim
-License](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) for
-distribution with Vim.
+Bass.vim is forked from [Clojure.vim][] and retains the same [Vim
+License](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license).
 
+- Copyright © 2021, Alex Suraci <suraci.alex@gmail.com>
 - Copyright © 2020–2021, The clojure-vim contributors.
 - Copyright © 2013–2018, Sung Pae.
 - Copyright © 2008–2012, Meikel Brandmeyer.
 - Copyright © 2007–2008, Toralf Wittner.
 
-See [LICENSE](https://github.com/clojure-vim/clojure.vim/blob/master/LICENSE)
+See [LICENSE](https://github.com/vito/bass.vim/blob/master/LICENSE)
 for more details.
 
 
 <!-- Links -->
 
+[bass.vim]: https://github.com/vito/bass.vim
 [clojure.vim]: https://github.com/clojure-vim/clojure.vim
-[vim-clojure-static]: https://github.com/guns/vim-clojure-static
-[vimclojure]: https://www.vim.org/scripts/script.php?script_id=2501
-[clojure]: https://clojure.org
+[bass]: https://vito.github.io/bass
 
 <!-- vim: set tw=79 : -->
