@@ -22,7 +22,7 @@ setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:,$,%,&,\|
 
 " There will be false positives, but this is better than missing the whole set
 " of user-defined def* definitions.
-setlocal define=\\v[(/]def(ault)@!\\S*
+setlocal define=\\v\(def(ault)@!\S*
 
 " Remove 't' from 'formatoptions' to avoid auto-wrapping code.
 setlocal formatoptions-=t
