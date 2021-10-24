@@ -24,14 +24,14 @@ endif
 " NB: generated via 'go run ./gen' and copy-pasted
 let s:bass_syntax_keywords = {
 			\   'bassCond': ["case","cond"]
+			\ , 'bassFn': ["dump","-","assoc","symbol->string","string->symbol","cons","list->scope","arg?","in-dir","make-scope","map-pairs","first","second","insecure!","empty?","eval",">=","filter","=","sink?","<","load","run","conj","log","not","source?","string?","list*","+","str","with-insecure","error","max","string->dir","with-args","with-mounts","logf","next","reduce-kv","append","with-entrypoint","with-mount","null?","apply","in-image","number?","errorf","path","subpath","bind","symbol?","<=","emit","id","response-from","scope?","rest","with-stdin","ignore?","boolean?","*","with-env","string->fs-path","on-platform","list?","operative?","combiner?","list","length","map","foldr","third","applicative?","now","stream","path?","with-meta","unwrap","foldl","arg","min","last","wrap",">","with-env-var","pair?","substring","scope->list","string->run-path","merge"]
 			\ , 'bassRepeat': ["each"]
-			\ , 'bassConst': ["null","_"]
-			\ , 'bassFn': ["symbol?","sink?","pair?","errorf","reduce-kv","with-insecure","=","subpath","second","map","boolean?","source?","next","run","cons","string->symbol","string->fs-path","list?","path?","log","filter","dump","assoc","foldl","with-mounts","with-env-var","scope?","applicative?","min","with-entrypoint","now","*","length","insecure!","in-image","substring","first","not","null?","in-dir","string?","-","list","id","with-args","number?","+","scope->list","str","append","ignore?","emit","third","apply","arg?","response-from","make-scope","bind","map-pairs","with-mount","last",">","foldr","unwrap","rest","arg","on-platform","error","symbol->string","operative?","string->run-path","stream","path","conj","with-stdin","with-meta","<=","string->dir","wrap","load","combiner?","logf","eval",">=","max","list*","<","merge","list->scope","empty?","with-env"]
 			\ , 'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
 			\ , 'bassBool': ["true","false"]
-			\ , 'bassDef': ["defn","def","defop"]
-			\ , 'bassOp': ["$","->","or","provide","fn","import","get-current-scope","op","quote","let","and"]
-			\ , 'bassSpecial': ["commentary","if","def","doc","time","do","comment"]
+			\ , 'bassConst': ["null","_"]
+			\ , 'bassSpecial': ["do","commentary","time","if","doc","comment"]
+			\ , 'bassDef': ["def","defop","defn"]
+			\ , 'bassOp': ["fn","import","->","let","provide","or","get-current-scope","quote","and","op","$"]
 			\ }
 
 

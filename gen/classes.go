@@ -33,7 +33,7 @@ var dynamicClasses = map[string]classifyFunc{
 	},
 	"bassSpecial": func(s bass.Symbol, v bass.Value) bool {
 		var builtin *bass.Builtin
-		return !isStatic(s) && v.Decode(&builtin) == nil
+		return !isStatic(s) && !isDefine(s) && v.Decode(&builtin) == nil
 	},
 }
 
