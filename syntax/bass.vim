@@ -95,21 +95,9 @@ syntax match bassComment ";.*$" contains=bassCommentTodo,@Spell
 syntax match bassComment "#!.*$"
 syntax match bassComment ","
 
-" Comment out discarded forms.  <https://bass.org/guides/weird_characters#_discard>
-" TODO: stacking support and/or option to enable/disable this.
-syntax region bassDiscard matchgroup=bassDiscard start=/#_[ ,\t\n`'~]*/   end=/[, \t\n()\[\]{}";]/me=e-1
-syntax region bassDiscard matchgroup=bassDiscard start=/#_[ ,\t\n`'~]*"/  skip=/\\[\\"]/ end=/"/
-syntax region bassDiscard matchgroup=bassDiscard start=/#_[ ,\t\n`'~]*(/  end=/)/  contains=bassDiscardForm
-syntax region bassDiscard matchgroup=bassDiscard start=/#_[ ,\t\n`'~]*\[/ end=/\]/ contains=bassDiscardForm
-syntax region bassDiscard matchgroup=bassDiscard start=/#_[ ,\t\n`'~]*{/  end=/}/  contains=bassDiscardForm
-
-syntax region bassDiscardForm start="("  end=")"  contained contains=bassDiscardForm
-syntax region bassDiscardForm start="{"  end="}"  contained contains=bassDiscardForm
-syntax region bassDiscardForm start="\[" end="\]" contained contains=bassDiscardForm
-
 " -*- TOP CLUSTER -*-
 " TODO: generate
-syntax cluster bassTop contains=@Spell,bassBoolean,bassCharacter,bassComment,bassCond,bassConstant,bassDefine,bassDeref,bassDispatch,bassError,bassException,bassFunc,bassKeyword,bassMacro,bassMap,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVariable,bassVector,bassDiscard
+syntax cluster bassTop contains=@Spell,bassBoolean,bassCharacter,bassComment,bassCond,bassConstant,bassDefine,bassDeref,bassDispatch,bassError,bassException,bassFunc,bassKeyword,bassMacro,bassMap,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVariable,bassVector
 
 syntax region bassSexp   matchgroup=bassParen start="("  end=")" contains=@bassTop fold
 syntax region bassVector matchgroup=bassParen start="\[" end="]" contains=@bassTop fold
@@ -147,8 +135,6 @@ highlight default link bassDispatch                  SpecialChar
 
 highlight default link bassComment                   Comment
 highlight default link bassCommentTodo               Todo
-highlight default link bassDiscard                   bassComment
-highlight default link bassDiscardForm               bassDiscard
 
 highlight default link bassError                     Error
 
