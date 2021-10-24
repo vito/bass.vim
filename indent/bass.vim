@@ -1,9 +1,10 @@
 " Vim indent file
-" Language:           Clojure
-" Maintainer:         Alex Vear <alex@vear.uk>
-" Former Maintainers: Sung Pae <self@sungpae.com>
+" Language:           Bass
+" Maintainer:         Alex Suraci <suraci.alex@gmail.com>
+" Former Maintainers: Alex Vear <alex@vear.uk>
+"                     Sung Pae <self@sungpae.com>
 "                     Meikel Brandmeyer <mb@kotka.de>
-" URL:                https://github.com/clojure-vim/clojure.vim
+" URL:                https://github.com/vito/bass.vim
 " License:            Vim (see :h license)
 " Last Change:        %%RELEASE_DATE%%
 
@@ -428,4 +429,4 @@ endif
 let &cpo = s:save_cpo
 unlet! s:save_cpo
 
-" vim:sts=8:sw=8:ts=8:noet
+" vim:sts=2:sw=2:ts=2:noet
