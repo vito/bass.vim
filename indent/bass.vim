@@ -24,32 +24,32 @@ setlocal indentkeys=!,o,O
 
 if exists("*searchpairpos")
 
-	if !exists('g:clojure_maxlines')
-		let g:clojure_maxlines = 300
+	if !exists('g:bass_maxlines')
+		let g:bass_maxlines = 300
 	endif
 
-	if !exists('g:clojure_fuzzy_indent')
-		let g:clojure_fuzzy_indent = 1
+	if !exists('g:bass_fuzzy_indent')
+		let g:bass_fuzzy_indent = 1
 	endif
 
-	if !exists('g:clojure_fuzzy_indent_patterns')
-		let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+	if !exists('g:bass_fuzzy_indent_patterns')
+		let g:bass_fuzzy_indent_patterns = ['^with', '^def', '^let']
 	endif
 
-	if !exists('g:clojure_fuzzy_indent_blacklist')
-		let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
+	if !exists('g:bass_fuzzy_indent_blacklist')
+		let g:bass_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 	endif
 
-	if !exists('g:clojure_special_indent_words')
-		let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
+	if !exists('g:bass_special_indent_words')
+		let g:bass_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn'
 	endif
 
-	if !exists('g:clojure_align_multiline_strings')
-		let g:clojure_align_multiline_strings = 0
+	if !exists('g:bass_align_multiline_strings')
+		let g:bass_align_multiline_strings = 0
 	endif
 
-	if !exists('g:clojure_align_subforms')
-		let g:clojure_align_subforms = 0
+	if !exists('g:bass_align_subforms')
+		let g:bass_align_subforms = 0
 	endif
 
 	function! s:syn_id_name()
@@ -87,8 +87,8 @@ if exists("*searchpairpos")
 	function! s:match_pairs(open, close, stopat)
 		" Stop only on vector and map [ resp. {. Ignore the ones in strings and
 		" comments.
-		if a:stopat == 0 && g:clojure_maxlines > 0
-			let stopat = max([line(".") - g:clojure_maxlines, 0])
+		if a:stopat == 0 && g:bass_maxlines > 0
+			let stopat = max([line(".") - g:bass_maxlines, 0])
 		else
 			let stopat = a:stopat
 		endif
@@ -97,7 +97,7 @@ if exists("*searchpairpos")
 		return [pos[0], col(pos)]
 	endfunction
 
-	function! s:clojure_check_for_string_worker()
+	function! s:bass_check_for_string_worker()
 		" Check whether there is the last character of the previous line is
 		" highlighted as a string. If so, we check whether it's a ". In this
 		" case we have to check also the previous character. The " might be the
@@ -139,7 +139,7 @@ if exists("*searchpairpos")
 	function! s:check_for_string()
 		let pos = getpos('.')
 		try
-			let val = s:clojure_check_for_string_worker()
+			let val = s:bass_check_for_string_worker()
 		finally
 			call setpos('.', pos)
 		endtry
@@ -150,7 +150,7 @@ if exists("*searchpairpos")
 		return substitute(a:word, "\\v%(.*/|[#'`~@^,]*)(.*)", '\1', '')
 	endfunction
 
-	function! s:clojure_is_method_special_case_worker(position)
+	function! s:bass_is_method_special_case_worker(position)
 		" Find the next enclosing form.
 		call search('\S', 'Wb')
 
@@ -171,7 +171,7 @@ if exists("*searchpairpos")
 		call search('\S', 'W')
 		let w = s:strip_namespace_and_macro_chars(s:current_word())
 
-		if g:clojure_special_indent_words =~# '\V\<' . w . '\>'
+		if g:bass_special_indent_words =~# '\V\<' . w . '\>'
 
 			" `letfn` is a special-special-case.
 			if w ==# 'letfn'
@@ -208,7 +208,7 @@ if exists("*searchpairpos")
 	function! s:is_method_special_case(position)
 		let pos = getpos('.')
 		try
-			let val = s:clojure_is_method_special_case_worker(a:position)
+			let val = s:bass_is_method_special_case_worker(a:position)
 		finally
 			call setpos('.', pos)
 		endtry
@@ -228,7 +228,7 @@ if exists("*searchpairpos")
 	endfunction
 
 	" Returns: [opening-bracket-lnum, indent]
-	function! s:clojure_indent_pos()
+	function! s:bass_indent_pos()
 		" Get rid of special case.
 		if line(".") == 1
 			return [0, 0]
@@ -238,7 +238,7 @@ if exists("*searchpairpos")
 		" normal lisp indenting or not.
 		let i = s:check_for_string()
 		if i > -1
-			return [0, i + !!g:clojure_align_multiline_strings]
+			return [0, i + !!g:bass_align_multiline_strings]
 		endif
 
 		call cursor(0, 1)
@@ -274,7 +274,7 @@ if exists("*searchpairpos")
 		" soon as one has access to syntax items.
 		"
 		" - Check whether we are in a special position after a word in
-		"   g:clojure_special_indent_words. These are special cases.
+		"   g:bass_special_indent_words. These are special cases.
 		" - Get the next keyword after the (.
 		" - If its first character is also a (, we have another sexp and align
 		"   one column to the right of the unmatched (.
@@ -319,12 +319,12 @@ if exists("*searchpairpos")
 
 		" If the keyword begins with #, check if it is an anonymous
 		" function or set, in which case we indent by the shiftwidth
-		" (minus one if g:clojure_align_subforms = 1), or if it is
+		" (minus one if g:bass_align_subforms = 1), or if it is
 		" ignored, in which case we use the ( position for indent.
 		if w[0] == "#"
 			" TODO: Handle #=() and other rare reader invocations?
 			if w[1] == '(' || w[1] == '{'
-				return [paren[0], paren[1] + (g:clojure_align_subforms ? 0 : &shiftwidth - 1)]
+				return [paren[0], paren[1] + (g:bass_align_subforms ? 0 : &shiftwidth - 1)]
 			elseif w[1] == '_'
 				return paren
 			endif
@@ -333,34 +333,34 @@ if exists("*searchpairpos")
 		" Test words without namespace qualifiers and leading reader macro
 		" metacharacters.
 		"
-		" e.g. clojure.core/defn and #'defn should both indent like defn.
+		" e.g. bass.core/defn and #'defn should both indent like defn.
 		let ww = s:strip_namespace_and_macro_chars(w)
 
 		if &lispwords =~# '\V\<' . ww . '\>'
 			return [paren[0], paren[1] + &shiftwidth - 1]
 		endif
 
-		if g:clojure_fuzzy_indent
-			\ && !s:match_one(g:clojure_fuzzy_indent_blacklist, ww)
-			\ && s:match_one(g:clojure_fuzzy_indent_patterns, ww)
+		if g:bass_fuzzy_indent
+			\ && !s:match_one(g:bass_fuzzy_indent_blacklist, ww)
+			\ && s:match_one(g:bass_fuzzy_indent_patterns, ww)
 			return [paren[0], paren[1] + &shiftwidth - 1]
 		endif
 
 		call search('\v\_s', 'cW')
 		call search('\v\S', 'W')
 		if paren[0] < line(".")
-			return [paren[0], paren[1] + (g:clojure_align_subforms ? 0 : &shiftwidth - 1)]
+			return [paren[0], paren[1] + (g:bass_align_subforms ? 0 : &shiftwidth - 1)]
 		endif
 
 		call search('\v\S', 'bW')
 		return [line('.'), col('.') + 1]
 	endfunction
 
-	function! GetClojureIndent()
+	function! GetBassIndent()
 		let lnum = line('.')
 		let orig_lnum = lnum
 		let orig_col = col('.')
-		let [opening_lnum, indent] = s:clojure_indent_pos()
+		let [opening_lnum, indent] = s:bass_indent_pos()
 
 		" Account for multibyte characters
 		if opening_lnum > 0
@@ -414,7 +414,7 @@ if exists("*searchpairpos")
 		return indent
 	endfunction
 
-	setlocal indentexpr=GetClojureIndent()
+	setlocal indentexpr=GetBassIndent()
 
 else
 
