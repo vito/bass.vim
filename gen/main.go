@@ -3,14 +3,33 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/vito/bass"
 )
 
+var printLispwords *bool = flag.Bool("lispwords", false, "print lispwords")
+var printClasses *bool = flag.Bool("classes", true, "print classes")
+
 func main() {
-	if len(os.Args) == 1 {
+	flag.Parse()
+	args := flag.Args()
+
+	if *printLispwords {
+		words, err := lispWords()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err)
+			os.Exit(1)
+		}
+
+		fmt.Fprintln(os.Stdout, strings.Join(words, ","))
+		return
+	}
+
+	if len(args) == 0 {
 		cs, err := allClasses()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error: %s\n", err)
@@ -21,7 +40,7 @@ func main() {
 		return
 	}
 
-	class := os.Args[1]
+	class := args[1]
 
 	names, err := classBindings(class)
 	if err != nil {

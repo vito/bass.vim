@@ -370,6 +370,7 @@ github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.3/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.4/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
+github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
 github.com/google/gofuzz v1.1.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
 github.com/google/martian v2.1.0+incompatible/go.mod h1:9I4somxYTbIHy5NJKHRl3wXiIaQGbYVAs8BPL6v8lEs=
@@ -713,11 +714,18 @@ github.com/vito/bass v0.0.0-20211024021337-0da4ad95d5b2 h1:8RwePb5Rc4uCwyV0cdNxB
 github.com/vito/bass v0.0.0-20211024021337-0da4ad95d5b2/go.mod h1:A/aMHXOBl/idnVDNoQO9Ap+vczjWoWK063THJlODEQw=
 github.com/vito/bass v0.0.0-20211024181257-d7defd1e6db8 h1:NJLEd5Yy+fw1D77yZeDzkphZ9hBUiF8zL/duoGyRv+U=
 github.com/vito/bass v0.0.0-20211024181257-d7defd1e6db8/go.mod h1:A/aMHXOBl/idnVDNoQO9Ap+vczjWoWK063THJlODEQw=
+github.com/vito/bass v0.0.0-20211113065936-9aafe2a7c23d h1:sEBydz3mJoeHC3qK/wI0tHcmE3SzJhswL3fu07Wvnms=
+github.com/vito/bass v0.0.0-20211113065936-9aafe2a7c23d/go.mod h1:xygbywMEvfUmojT3ha0gAiroGLc/pHD1Xqt46NAQ5sk=
+github.com/vito/bass v0.0.0-20211113070536-d4da21c976b2 h1:7rG1nBbpgyWj+HAiNFMQvf0OUqmgL4CffpaWiN26UEw=
+github.com/vito/bass v0.0.0-20211113070536-d4da21c976b2/go.mod h1:xygbywMEvfUmojT3ha0gAiroGLc/pHD1Xqt46NAQ5sk=
 github.com/vito/booklit v0.12.1-0.20210822231131-09aacdc3c48f/go.mod h1:x5ufTXYRTw0yGSaGr0hjyclQwcUPYWbrHpDoRLTp4LQ=
 github.com/vito/invaders v0.0.2 h1:igc2c3fm89va6Qle9cEzKmFthYTeHse4Gnz6GWIlnpk=
 github.com/vito/invaders v0.0.2/go.mod h1:Pi5WKkYw/ru9Jm9VD2PXOuorZ86bx1BdNdEn35srCWk=
+github.com/vito/is v0.0.5/go.mod h1:340fJtnLGRYg4rup7bXx0HMP52pz/PgPa0wNT2hOS40=
 github.com/vito/progrock v0.0.0-20211023232442-493bf87f393c h1:Yc+sSyTkTA6ce4oePMIqpGt4Q6NfTPAYdWcwhGmUqLw=
 github.com/vito/progrock v0.0.0-20211023232442-493bf87f393c/go.mod h1:38R7mnjm4c1QHgznzQ/GhyvwYYslOflfc1rqPa2mmIQ=
+github.com/vito/progrock v0.0.0-20211024194838-25bb78456ecf h1:b86OP4C1cICa2wBKt7IgT+ekPxo4ealE6/fmFfr8f3M=
+github.com/vito/progrock v0.0.0-20211024194838-25bb78456ecf/go.mod h1:38R7mnjm4c1QHgznzQ/GhyvwYYslOflfc1rqPa2mmIQ=
 github.com/vito/vt100 v0.0.0-20210912004403-d61d7faf769e/go.mod h1:tef+Px8jpdyyUTNDDgZjqkm5UZWM+rs3tXclM8NeC7o=
 github.com/vito/vt100 v0.0.0-20211015210238-19dbb378469e h1:XftiO3GVlhKgW5kGv0e7OPvM0LbjvOOf61epTb7pbtw=
 github.com/vito/vt100 v0.0.0-20211015210238-19dbb378469e/go.mod h1:tef+Px8jpdyyUTNDDgZjqkm5UZWM+rs3tXclM8NeC7o=

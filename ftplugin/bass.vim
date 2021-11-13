@@ -44,9 +44,7 @@ setlocal commentstring=;\ %s
 " specially and hence are not indented specially.
 "
 " -*- LISPWORDS -*-
-"
-" TODO: generate based on comments annotated on definitions in stdlib
-setlocal lispwords=def,op,defop,defn,defcmd,provide
+setlocal lispwords=op,defop,fn,defn,let,provide,cond,case
 
 " Skip brackets in ignored syntax regions when using the % command
 if exists('loaded_matchit')

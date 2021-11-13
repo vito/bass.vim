@@ -14,9 +14,9 @@ require (
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/spy16/slurp v0.2.3 // indirect
 	github.com/tonistiigi/units v0.0.0-20180711220420-6950e57a87ea // indirect
-	github.com/vito/bass v0.0.0-20211024181257-d7defd1e6db8 // indirect
+	github.com/vito/bass v0.0.0-20211113070536-d4da21c976b2 // indirect
 	github.com/vito/invaders v0.0.2 // indirect
-	github.com/vito/progrock v0.0.0-20211023232442-493bf87f393c // indirect
+	github.com/vito/progrock v0.0.0-20211024194838-25bb78456ecf // indirect
 	github.com/vito/vt100 v0.0.0-20211015210238-19dbb378469e // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect
