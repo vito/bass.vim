@@ -17,6 +17,24 @@ Plug 'vito/bass.vim'
 Adjust for whatever flavor of package manager you use - there's not a lot to
 set up.
 
+### Language server
+
+A `bass_lsp` Lua library is provided to configure Bass with Neovim's
+`lspconfig`.
+
+First, install the `bass-lsp` executable:
+
+```sh
+go install github.com/vito/bass/cmd/bass-lsp@latest
+```
+
+Then, add this somewhere in your vim config's LSP setup:
+
+```lua
+require'bass_lsp'.setup()
+```
+
+
 ## Configuration
 
 ### Folding
