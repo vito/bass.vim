@@ -1,17 +1,19 @@
-local configs = require('lspconfig/configs')
-local util = require('lspconfig/util')
+local lspconfig = require 'lspconfig'
+local configs = require 'lspconfig.configs'
 
 local function setup()
   configs.bass = {
     default_config = {
-      cmd = { 'bass-lsp' },
-      filetypes = { 'bass' },
-      root_dir = util.root_pattern('.git')
-    },
+      cmd = {'bass-lsp'};
+      filetypes = {'bass'};
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname)
+      end;
+    };
 
     docs = {
       description = [[https://github.com/vito/bass]],
-    },
+    };
   };
 end
 
