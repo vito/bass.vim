@@ -2,7 +2,7 @@ module github.com/vito/bass.vim
 
 go 1.17
 
-require github.com/vito/bass v0.0.0-20211221230227-861d9166cccf
+require github.com/vito/bass v0.0.0-20220102012847-65843092f027
 
 require (
 	github.com/adrg/xdg v0.3.4 // indirect
@@ -25,7 +25,7 @@ require (
 	github.com/spy16/slurp v0.2.3 // indirect
 	github.com/tonistiigi/units v0.0.0-20180711220420-6950e57a87ea // indirect
 	github.com/vito/invaders v0.0.2 // indirect
-	github.com/vito/progrock v0.0.0-20211219024453-a6da2da5c20e // indirect
+	github.com/vito/progrock v0.0.0-20220101043809-ff10276a952b // indirect
 	github.com/vito/vt100 v0.0.0-20211217051322-45a31b434dad // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect

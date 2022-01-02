@@ -23,17 +23,16 @@ endif
 
 " NB: generated via 'go run ./gen' and copy-pasted
 let s:bass_syntax_keywords = {
-                \   'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
-                \ , 'bassConst': ["null","_"]
-                \ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","or","and","->","$"]
-                \ , 'bassCond': ["case","cond"]
-                \ , 'bassRepeat': ["each"]
-                \ , 'bassBool': ["true","false"]
-                \ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","stream","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","scope->list","string->fs-path","string->run-path","string->dir","merge","load","run","path","subpath","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","foldr","foldl","append","filter","conj","list->scope","last","arg","arg?","with-args","with-stdin","with-entrypoint","insecure!","with-insecure","in-image","from","cd","on-platform","response-from","in-dir","with-mount","with-mounts","with-env-var","with-env","with-label","not"]
-                \ , 'bassSpecial': ["time","do","doc","if"]
-                \ , 'bassDef': ["def","defop","defn"]
-                \ }
-
+		\   'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
+		\ , 'bassDef': ["def","defop","defn"]
+		\ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","stream","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->run-path","string->dir","merge","path","subpath","name","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","arg","arg?","wrap-cmd","with-args","with-stdin","insecure!","with-insecure","linux","in-image","from","cd","response-from","in-dir","with-mount","with-mounts","with-env-var","with-env","with-label","not"]
+		\ , 'bassBool': ["true","false"]
+		\ , 'bassConst': ["null","_"]
+		\ , 'bassCond': ["case","cond"]
+		\ , 'bassRepeat': ["each"]
+		\ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","use","or","and","->","$"]
+		\ , 'bassSpecial': ["time","do","doc","if"]
+		\ }
 
 function! s:syntax_keyword(dict)
 	for key in keys(a:dict)
