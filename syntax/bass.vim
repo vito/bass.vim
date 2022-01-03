@@ -23,15 +23,15 @@ endif
 
 " NB: generated via 'go run ./gen' and copy-pasted
 let s:bass_syntax_keywords = {
-		\   'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
-		\ , 'bassDef': ["def","defop","defn"]
-		\ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","stream","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->run-path","string->dir","merge","path","subpath","name","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","arg","arg?","wrap-cmd","with-args","with-stdin","insecure!","with-insecure","linux","in-image","from","cd","response-from","in-dir","with-mount","with-mounts","with-env-var","with-env","with-label","not"]
+		\   'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->run-path","string->dir","merge","path","subpath","name","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","take","arg","arg?","wrap-cmd","with-args","with-stdin","insecure!","with-insecure","linux","in-image","from","cd","response-from","in-dir","with-mount","with-mounts","with-env-var","with-env","with-label","not"]
 		\ , 'bassBool': ["true","false"]
-		\ , 'bassConst': ["null","_"]
 		\ , 'bassCond': ["case","cond"]
-		\ , 'bassRepeat': ["each"]
+		\ , 'bassConst': ["null","_"]
+		\ , 'bassDef': ["def","defop","defn"]
 		\ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","use","or","and","->","$"]
+		\ , 'bassRepeat': ["each"]
 		\ , 'bassSpecial': ["time","do","doc","if"]
+		\ , 'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
 		\ }
 
 function! s:syntax_keyword(dict)
@@ -60,24 +60,16 @@ endif
 unlet! s:key
 delfunction s:syntax_keyword
 
-" Keywords are symbols:
-"   static Pattern symbolPat = Pattern.compile("[:]?([\\D&&[^/]].*/)?([\\D&&[^/]][^/]*)");
-" But they:
-"   * Must not end in a : or /
-"   * Must not have two adjacent colons except at the beginning
-"   * Must not contain any reader metacharacters except for ' and #
-syntax match bassKeyword "\v<:{1,2}([^ \n\r\t()\[\]{}";@^`~\\/]+/)*[^ \n\r\t()\[\]{}";@^`~\\/]+:@1<!>"
+syntax match bassKeyword "\v:([a-zA-Z!$&*_+=|<.>?-]+)"
+
+syntax match bassSymbol "\v%([a-zA-Z!$&*_+=|<.>?-]+)"
 
 syntax match bassStringEscape "\v\\%([\\btnfr"]|u\x{4}|[0-3]\o{2}|\o{1,2})" contained
 
 syntax region bassString matchgroup=bassStringDelimiter start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=bassStringEscape,@Spell
 
-syntax match bassCharacter "\v\\%(o%([0-3]\o{2}|\o{1,2})|u\x{4}|newline|tab|space|return|backspace|formfeed|.)"
-
-syntax match bassSymbol "\v%([a-zA-Z!$&*_+=|<.>?-]|[^\x00-\x7F])+%(:?%([a-zA-Z0-9!#$%&*_+=|'<.>/?-]|[^\x00-\x7F]))*[#:]@1<!"
-
 " NB. Correct matching of radix literals was removed for better performance.
-syntax match bassNumber "\v<[-+]?%(%([2-9]|[12]\d|3[0-6])[rR][[:alnum:]]+|%(0\o*|0x\x+|[1-9]\d*)N?|%(0|[1-9]\d*|%(0|[1-9]\d*)\.\d*)%(M|[eE][-+]?\d+)?|%(0|[1-9]\d*)/%(0|[1-9]\d*))>"
+syntax match bassNumber "\v<[-+]?%(0o?\o+|0x\x+|\d+)>"
 
 syntax match bassVarArg "&"
 
@@ -94,11 +86,11 @@ syntax match bassComment "#!.*$"
 syntax match bassComment ","
 
 " -*- TOP CLUSTER -*-
-syntax cluster bassTop contains=@Spell,bassBool,bassCharacter,bassComment,bassCond,bassConst,bassDef,bassDeref,bassDispatch,bassError,bassFn,bassKeyword,bassOp,bassMap,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVar,bassVector
+syntax cluster bassTop contains=@Spell,bassBool,bassComment,bassCond,bassConst,bassDef,bassDeref,bassDispatch,bassError,bassFn,bassKeyword,bassOp,bassScope,bassMeta,bassNumber,bassQuote,bassRepeat,bassSexp,bassSpecial,bassString,bassSymbol,bassUnquote,bassVarArg,bassVar,bassCons
 
 syntax region bassSexp   matchgroup=bassParen start="("  end=")" contains=@bassTop fold
-syntax region bassVector matchgroup=bassParen start="\[" end="]" contains=@bassTop fold
-syntax region bassMap    matchgroup=bassParen start="{"  end="}" contains=@bassTop fold
+syntax region bassCons   matchgroup=bassParen start="\[" end="]" contains=@bassTop fold
+syntax region bassScope  matchgroup=bassParen start="{"  end="}" contains=@bassTop fold
 
 " Highlight superfluous closing parens, brackets and braces.
 syntax match bassError "]\|}\|)"
@@ -107,7 +99,6 @@ syntax sync fromstart
 
 highlight default link bassConst                     Constant
 highlight default link bassBool                      Boolean
-highlight default link bassCharacter                 Character
 highlight default link bassKeyword                   Keyword
 highlight default link bassNumber                    Number
 highlight default link bassString                    String
