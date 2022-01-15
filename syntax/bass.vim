@@ -23,15 +23,15 @@ endif
 
 " NB: generated via 'go run ./gen' and copy-pasted
 let s:bass_syntax_keywords = {
-		\   'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->run-path","string->dir","merge","path","subpath","name","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","take","arg","arg?","wrap-cmd","with-args","with-stdin","insecure!","with-insecure","linux","in-image","from","cd","response-from","in-dir","with-mount","with-mounts","with-env-var","with-env","with-label","not"]
+		\   'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
 		\ , 'bassBool': ["true","false"]
 		\ , 'bassCond': ["case","cond"]
 		\ , 'bassConst': ["null","_"]
 		\ , 'bassDef': ["def","defop","defn"]
+		\ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->cmd-path","string->dir","merge","path","subpath","name","in-image","in-dir","with-mount","with-args","with-stdin","with-env","with-insecure","wrap-cmd","with-label","thunk-cmd","load","resolve","run","succeeds?","read","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","take","arg","arg?","insecure!","linux","from","cd","not"]
 		\ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","use","or","and","->","$"]
 		\ , 'bassRepeat': ["each"]
 		\ , 'bassSpecial': ["time","do","doc","if"]
-		\ , 'bassVar': ["*dir*","*args*","*stdin*","*stdout*"]
 		\ }
 
 function! s:syntax_keyword(dict)
