@@ -26,7 +26,6 @@ let s:bass_syntax_keywords = {
 \ , 'bassConst': ["null","_"]
 \ , 'bassCond': ["case","cond"]
 \ , 'bassRepeat': ["each"]
-\ , 'bassVar': []
 \ , 'bassDef': ["def","defop","defn"]
 \ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->cmd-path","string->dir","merge","subpath","path-name","in-image","in-dir","with-mount","with-args","with-stdin","with-env","with-insecure","wrap-cmd","with-label","thunk-cmd","load","resolve","run","succeeds?","read","make-secret","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","take","str-thunk","insecure!","linux","from","cd","not"]
 \ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","use","or","and","->","$"]

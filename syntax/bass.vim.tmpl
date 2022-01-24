@@ -23,7 +23,9 @@ endif
 
 let s:bass_syntax_keywords = {
 {{ range $i, $c := .Classes -}}
+{{- if .Bindings -}}
 		\ {{if $i}},{{else}} {{end}} 'bass{{.Class}}': {{.Bindings | list}}
+{{- end -}}
 {{- end -}}
 		\ }
 
