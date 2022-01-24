@@ -3,52 +3,44 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"flag"
-	"fmt"
+	"io"
+	"log"
 	"os"
 	"strings"
+	"text/template"
 
-	"github.com/vito/bass"
+	"github.com/vito/bass/pkg/bass"
+	"github.com/vito/bass/pkg/hl"
 )
 
-var printLispwords *bool = flag.Bool("lispwords", false, "print lispwords")
-var printClasses *bool = flag.Bool("classes", true, "print classes")
+type BassHL struct {
+	LispWords []bass.Symbol
+	Classes   []hl.Classification
+}
 
 func main() {
-	flag.Parse()
-	args := flag.Args()
+	scope := bass.NewStandardScope()
 
-	if *printLispwords {
-		words, err := lispWords()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err)
-			os.Exit(1)
-		}
-
-		fmt.Fprintln(os.Stdout, strings.Join(words, ","))
-		return
-	}
-
-	if len(args) == 0 {
-		cs, err := allClasses()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err)
-			os.Exit(1)
-		}
-
-		fmt.Fprintln(os.Stdout, formatClasses(cs))
-		return
-	}
-
-	class := args[1]
-
-	names, err := classBindings(class)
+	content, err := io.ReadAll(os.Stdin)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err)
-		os.Exit(1)
+		log.Fatalf("read template: %s", err)
 	}
 
-	fmt.Fprintln(os.Stdout, formatList(names))
+	tmpl, err := template.New("stdin").Funcs(template.FuncMap{
+		"list":   formatList,
+		"commas": commaList,
+	}).Parse(string(content))
+	if err != nil {
+		log.Fatalf("parse template: %s", err)
+	}
+
+	err = tmpl.Execute(os.Stdout, BassHL{
+		LispWords: hl.LispWords(scope),
+		Classes:   hl.Classify(scope),
+	})
+	if err != nil {
+		log.Fatalf("execute template: %s", err)
+	}
 }
 
 func formatList(names []bass.Symbol) string {
@@ -63,23 +55,11 @@ func formatList(names []bass.Symbol) string {
 	return buf.String()
 }
 
-func formatClasses(cs classes) string {
-	buf := new(bytes.Buffer)
-
-	fmt.Fprintln(buf, "{")
-
-	i := 0
-	for class, names := range cs {
-		if i == 0 {
-			fmt.Fprintf(buf, "\t\t\\   '%s': %s", class, formatList(names))
-		} else {
-			fmt.Fprintf(buf, "\t\t\\ , '%s': %s", class, formatList(names))
-		}
-
-		i++
+func commaList(names []bass.Symbol) string {
+	strs := make([]string, len(names))
+	for i := range names {
+		strs[i] = string(names[i])
 	}
 
-	fmt.Fprintln(buf, "\t\t\\ }")
-
-	return buf.String()
+	return strings.Join(strs, ",")
 }
