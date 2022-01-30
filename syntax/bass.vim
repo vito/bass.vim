@@ -27,9 +27,9 @@ let s:bass_syntax_keywords = {
 \ , 'bassCond': ["case","cond"]
 \ , 'bassRepeat': ["each"]
 \ , 'bassDef': ["def","defop","defn"]
-\ , 'bassFn': ["null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","with-meta","meta","+","*","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->cmd-path","string->dir","merge","subpath","path-name","in-image","in-dir","with-mount","with-args","with-stdin","with-env","with-insecure","wrap-cmd","with-label","thunk-cmd","load","resolve","run","succeeds?","read","make-secret","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","values","keys","foldr","foldl","append","filter","conj","list->scope","last","take","str-thunk","insecure!","linux","from","cd","not"]
-\ , 'bassOp': ["op","fn","get-current-scope","quote","let","import","provide","use","or","and","->","$"]
-\ , 'bassSpecial': ["time","do","doc","if"]
+\ , 'bassFn': ["dump","log","logf","now","error","errorf","cons","wrap","unwrap","eval","make-scope","bind","meta","with-meta","null?","ignore?","boolean?","number?","string?","symbol?","scope?","sink?","source?","list?","pair?","applicative?","operative?","combiner?","path?","empty?","thunk?","+","*","quot","-","max","min","=",">",">=","<","<=","list->source","emit","next","reduce-kv","assoc","symbol->string","string->symbol","str","substring","trim","scope->list","string->fs-path","string->cmd-path","string->dir","subpath","path-name","in-image","in-dir","with-args","with-stdin","with-env","with-insecure","wrap-cmd","with-label","with-mount","thunk-cmd","load","resolve","run","succeeds?","read","make-secret","list","list*","first","rest","length","second","third","map","map-pairs","apply","id","vals","keys","foldr","foldl","merge","append","filter","conj","list->scope","last","take","str-thunk","insecure!","linux","from","cd","not"]
+\ , 'bassOp': ["op","fn","current-scope","quote","let","import","provide","use","or","and","->","$"]
+\ , 'bassSpecial': ["if","do","doc"]
 \ }
 
 function! s:syntax_keyword(dict)

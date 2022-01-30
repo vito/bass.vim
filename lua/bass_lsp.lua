@@ -4,7 +4,7 @@ local configs = require 'lspconfig.configs'
 local function setup()
   configs.bass = {
     default_config = {
-      cmd = {'bass-lsp'};
+      cmd = {'bass', '--lsp'};
       filetypes = {'bass'};
       root_dir = function(fname)
         return lspconfig.util.find_git_ancestor(fname)
