@@ -1,6 +1,9 @@
 " detect from filename
 autocmd BufNewFile,BufRead *.bass setlocal filetype=bass
 
+" lock files
+autocmd BufNewFile,BufRead bass.lock setlocal filetype=json
+
 " detect from shebang line
 autocmd BufRead *
             \ if getline(1) =~# '\v^#!%(\f*/|/usr/bin/env\s*<)bass>' |
