@@ -58,9 +58,9 @@ endif
 unlet! s:key
 delfunction s:syntax_keyword
 
-syntax match bassKeyword "\v:([a-zA-Z!$&*_+=|<.>?-]+)"
+syntax match bassKeyword "\v:([a-zA-Z!$&*_+=|<.>?-][0-9a-zA-Z!$&*_+=|<.>?-]*)"
 
-syntax match bassSymbol "\v%([a-zA-Z!$&*_+=|<.>?-]+)"
+syntax match bassSymbol "\v%([a-zA-Z!$&*_+=|<.>?-][0-9a-zA-Z!$&*_+=|<.>?-]*)"
 
 syntax match bassStringEscape "\v\\%([\\btnfr"]|u\x{4}|[0-3]\o{2}|\o{1,2})" contained
 
