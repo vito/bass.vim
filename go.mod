@@ -2,10 +2,11 @@ module github.com/vito/bass.vim
 
 go 1.17
 
-require github.com/vito/bass v0.0.0-20220130171243-86a1ceaef153
+require github.com/vito/bass v0.0.0-20220214232908-32557b494805
 
 require (
 	github.com/adrg/xdg v0.4.0 // indirect
+	github.com/gofrs/flock v0.8.1 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/jonboulle/clockwork v0.2.2 // indirect
