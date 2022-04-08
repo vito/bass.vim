@@ -42,7 +42,7 @@ setlocal commentstring=;\ %s
 " The arglists for these functions are generally in the form of [x & body];
 " Functions that accept a flat list of forms do not treat the first argument
 " specially and hence are not indented specially.
-setlocal lispwords=if,op,defop,fn,defn,let,provide,cond,case,from,cd
+setlocal lispwords=if,op,defop,fn,defn,let,provide,cond,case,curryfn,from,cd
 
 " Skip brackets in ignored syntax regions when using the % command
 if exists('loaded_matchit')

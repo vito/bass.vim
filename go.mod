@@ -2,7 +2,7 @@ module github.com/vito/bass.vim
 
 go 1.17
 
-require github.com/vito/bass v0.0.0-20220216041556-e9c1f3c50e28
+require github.com/vito/bass v0.3.0
 
 require (
 	github.com/adrg/xdg v0.4.0 // indirect
