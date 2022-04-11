@@ -1272,6 +1272,8 @@ github.com/vito/bass v0.0.0-20220216041556-e9c1f3c50e28 h1:gyX0POnzthVxVdK9lA9eX
 github.com/vito/bass v0.0.0-20220216041556-e9c1f3c50e28/go.mod h1:kHGNuHsegkM2aA97G30iezXBiXfLodEvr6Lw+jHSBeQ=
 github.com/vito/bass v0.3.0 h1:zhcevMwzPwL146pLqKWUYseLog2MMf2qX5uO8+QCrxI=
 github.com/vito/bass v0.3.0/go.mod h1:+Kz6Q+vm9eF2ivcHeEW5pIMkog8TBWZf6cnpfNI5lqg=
+github.com/vito/bass v0.4.0 h1:qURxWV7xtApl/u0PLAsaCFoRFmhZs6nRq8rehI03rjA=
+github.com/vito/bass v0.4.0/go.mod h1:0J4Amc8kRoNUVUa6RUkwGjSddI1+qQKgXOFF9+rkUEw=
 github.com/vito/booklit v0.12.1-0.20210822231131-09aacdc3c48f/go.mod h1:x5ufTXYRTw0yGSaGr0hjyclQwcUPYWbrHpDoRLTp4LQ=
 github.com/vito/invaders v0.0.2 h1:igc2c3fm89va6Qle9cEzKmFthYTeHse4Gnz6GWIlnpk=
 github.com/vito/invaders v0.0.2/go.mod h1:Pi5WKkYw/ru9Jm9VD2PXOuorZ86bx1BdNdEn35srCWk=
