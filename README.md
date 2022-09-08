@@ -4,8 +4,7 @@
 
 [Bass][] syntax highlighting for Vim and Neovim.
 
-Provides syntax highlighting and LSP configuration (assuming you have
-`bass-lsp` installed).
+Provides syntax highlighting and LSP configuration.
 
 
 ## Installation
@@ -14,25 +13,26 @@ Provides syntax highlighting and LSP configuration (assuming you have
 Plug 'vito/bass.vim'
 ```
 
-Adjust for whatever flavor of package manager you use - there's not a lot to
-set up.
-
 ### Language server
 
 A `bass_lsp` Lua library is provided to configure Bass with Neovim's
-`lspconfig`.
-
-First, install the `bass-lsp` executable:
-
-```sh
-go install github.com/vito/bass/cmd/bass-lsp@latest
-```
-
-Then, add this somewhere in your vim config's LSP setup:
+`lspconfig`. Just add this somewhere in your vim config:
 
 ```lua
 require'bass_lsp'.setup()
 ```
+
+### Tree-sitter
+
+A Bass Tree-sitter grammar is available in addition to the old-fashioned
+`syntax/bass.vim`. Until it is merged into the official Neovim Tree-sitter
+repository, you'll need to load it like so:
+
+```lua
+require'bass_ts'.setup()
+```
+
+Then, run `:TSInstall bass`.
 
 
 ## Configuration
@@ -45,30 +45,6 @@ standard Vim fold commands.
 
 (Note that this option will not work with scripts that redefine the bracket
 regions, such as rainbow parenphesis plugins.)
-
-
-### Syntax options
-
-Syntax highlighting of bindings from the Bass stdlib is provided by default,
-but additional symbols can be highlighted by adding them to the
-`g:bass_syntax_keywords` variable.
-
-```vim
-let g:bass_syntax_keywords = {
-    \   'bassOp': ["defn", "defop"],
-    \   'bassFn': ["length", "map"]
-    \ }
-```
-
-(See `s:bass_syntax_keywords` in the [syntax script](syntax/bass.vim) for
-a complete example.)
-
-There is also a buffer-local variant of this variable (`b:bass_syntax_keywords`)
-that is intended for use by plugin authors to highlight symbols dynamically.
-
-By setting `b:bass_syntax_without_core_keywords`, vars from `bass.core`
-will not be highlighted by default.  This is useful for namespaces that have
-set `(:refer-bass :only [])`.
 
 
 ### Indent options
