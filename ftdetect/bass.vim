@@ -6,7 +6,7 @@ autocmd BufNewFile,BufRead bass.lock setlocal filetype=json
 
 " detect from shebang line
 autocmd BufRead *
-            \ if getline(1) =~# '\v^#!%(\f*/|/usr/bin/env\s*<)bass>' |
+            \ if getline(1) =~# '\v^#!%(\f*/|/usr/bin/env\s*<)bass>' || getline(1) =~# '^# syntax = basslang' |
             \     setlocal filetype=bass |
             \ endif
 
